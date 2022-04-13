@@ -14,8 +14,8 @@
                 display: block;
                 margin-left: auto;
                 margin-right: auto;
-                margin-top: 100px;
-                width: 50%;
+                margin-top: 50px;
+                width: 450px;
             }
             
             .tagline {
@@ -26,18 +26,20 @@
                 text-align: center;
                 color: white;
                 font-family: 'Questrial', sans-serif;
+                font-size: 30px;
             }
 
             .g-signin2 {
+                margin-top: 55px;
                 display: block;
                 margin-left: auto;
                 margin-right: auto;
-                width: 50%;
+                width: 100%;
             }
         </style>
     </head>
     <body>
-        <img src="images/Foodscape.jpg" style="width:250px;height:30x0px;">
+        <img src="images/Foodscape.jpg">
         <div class="tagline">Cook with what you've got!</div>
         <div class="g-signin2" data-onsuccess="onSignIn"></div>
         <script>
@@ -56,14 +58,5 @@
               console.log("ID Token: " + id_token);
             }
           </script>
-        <!-- <script>
-            function onSignIn(googleUser) {
-                var profile = googleUser.getBasicProfile();
-                console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-                console.log('Name: ' + profile.getName());
-                console.log('Image URL: ' + profile.getImageUrl());
-                console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-              }
-        </script> -->
     </body>
 </html>
