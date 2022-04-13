@@ -6,7 +6,20 @@
         <style>
             @import url("https://fonts.googleapis.com/css2?family=Questrial&display=swap");
 
-            body {
+            .container {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .leftCont {
+                width: 45%;
+                display: flex;
+                flex-direction: column;
+                background-color: white;
+            }
+
+            .rightCont {
+                width: 55%;
                 background-color: #FCCA46;
             }
 
@@ -16,6 +29,17 @@
                 margin-right: auto;
                 margin-top: 50px;
                 width: 450px;
+            }
+
+            .login {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 50%;
+                text-align: center;
+                color: rgb(18, 17, 17);
+                font-family: 'Questrial', sans-serif;
+                font-size: 60px;
             }
             
             .tagline {
@@ -35,13 +59,21 @@
                 margin-left: auto;
                 margin-right: auto;
                 width: 100%;
+                border-radius: 50%;
             }
         </style>
     </head>
     <body>
-        <img src="images/Foodscape.jpg">
-        <div class="tagline">Cook with what you've got!</div>
-        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        <div class="container">
+            <div class="leftCont">
+                <p class="login">Login</p>
+                <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            </div>
+            <div class="rightCont">
+                <img src="images/Foodscape.jpg">
+                <div class="tagline">Cook with what you've got!</div>
+            </div>
+        </div>
         <script>
             function onSignIn(googleUser) {
               // Useful data for your client-side scripts:
