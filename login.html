@@ -70,6 +70,7 @@
                 <div class="tagline">Cook with what you've got!</div>
             </div>
         </div>
+        
         <script>
             function onSignIn(googleUser) {
               // Useful data for your client-side scripts:
@@ -84,6 +85,8 @@
               // The ID token you need to pass to your backend:
               var id_token = googleUser.getAuthResponse().id_token;
               console.log("ID Token: " + id_token);
+
+              var inDB = checkUserInDB();
             }
 
             function signOut() {
