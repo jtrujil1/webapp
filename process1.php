@@ -8,14 +8,12 @@
 
 <body>
 <?php
-
-$name = $_GET['name'];
 $allergy = $_GET['allergen'];
 $allergyvalues = "";
 
 foreach ($allergy as $value){ 
     $allergyvalues .= $value;
-    $allergyvalues .= " ";
+    $allergyvalues .= ",";
 }
 
 $diet = $_GET['diet'];
@@ -24,14 +22,14 @@ $dietvalues = "";
 
 foreach ($diet as $value){ 
     $dietvalues .= $value;
-    $dietvalues .= " ";
+    $dietvalues .= ",";
 }
 
 //establish connection info
 $server = "localhost";// your server
-$userid = "ulsqkho6yu4fu"; // your user id
+$userid = "uqqa23cg6ifpt"; // your user id
 $pw = "foodscape"; // your pw
-$db= "dbsqu7dtzilu6t"; // your database
+$db= "dbbfgj50gawiki"; // your database
 
 // Create connection
 $conn = new mysqli($server, $userid, $pw );
@@ -41,13 +39,14 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-//echo "Connected successfully<br>";
-
 //select the database
 $conn->select_db($db);
 
+$id = $_COOKIE["userId"];
+
 //run a query
-$sql = "INSERT INTO `preferences` (`id`, `name`, `allergens`, `diet`, `userid`) VALUES (NULL, '$name', '$allergyvalues', '$dietvalues', '')";
+$sql = "UPDATE `preferences` SET `allergens` = '$allergyvalues', `diet` =  '$dietvalues' WHERE `userid` = '$id'";
+
 $result = $conn->query($sql);
 
 //close the connection
