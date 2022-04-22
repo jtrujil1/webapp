@@ -39,8 +39,6 @@ $sql = "SELECT `allergens`, `diet` FROM `preferences` WHERE `userid` LIKE '$id'"
 
 $result = $conn->query($sql);
 
-$url = "https://alejandrat.sgedu.site";
-
 $usrAllergens = array();
 $usrDiets = array();
 
