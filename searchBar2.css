@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+
+#searchButton {
+    background-color: #FCCA46; /* sunglow */
+    border-radius: 12px;
+    padding: 12px 28px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    font-family: 'Montserrat', sans-serif;
+    color: #A1C181;
+}
+
+#output {
+    font-family: 'Montserrat', sans-serif;
+    color: #A1C181;
+}
+
+#usrAllergens, #usrDiets{
+    display: none;
+}

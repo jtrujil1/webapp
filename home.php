@@ -2,8 +2,11 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta name="google-signin-scope" content="profile email">
+        <meta name="google-signin-code" content="loading.php">
+        <meta name="google-signin-client_id" content="764009503051-2ii3ko9tqvj69aoielqgbv4a2tfgrfqm.apps.googleusercontent.com">
         <title>Foodscape</title>
-        <link rel = "stylesheet" href = "searchBar.css">
+        <link rel = "stylesheet" href = "searchBar2.css">
         <link rel = "stylesheet" href = "topbar.css">
         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
     </head>
@@ -73,7 +76,6 @@
         <a href="" id="sourceLink"></a>
 
         <script>
-
         function getsource(id) {
             $.ajax({
                 url:"https://api.spoonacular.com/recipes/"+id+"/information?apiKey=f03a41647d14469b9841ab4eca7cd650",
@@ -109,6 +111,21 @@
                 }
             });
         }
+        
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                console.log('User signed out.');
+                window.open("/login.html","_self");
+            });
+            }
+
+            function onLoad() {
+            gapi.load('auth2', function() {
+                gapi.auth2.init();
+            });
+        }
         </script>
+        <script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
     </body>
 </html>
