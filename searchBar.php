@@ -47,21 +47,27 @@ $conn->close();
 
 ?>
 
-<input id="search">
-<button onclick="getrecipe(document.getElementById('search').value)">Search Ingredients</button>
-<div id="output"></div>
-<a href="" id="sourceLink"></a>
+<div id = "wrapper">
+    <img id = 'logo' src="images/Foodscape.jpg">
+    <input id='search'>
+    <button id="searchButton" onclick="getrecipe(document.getElementById('search').value)">Search Ingredients</button>
+    <div id="output"></div>
+</div>
 
 <script>
 
-function getsource(id) {
+function getsource(id, i) {
+    var ret = "";
     $.ajax({
-        url:"https://api.spoonacular.com/recipes/"+id+"/information?apiKey=f03a41647d14469b9841ab4eca7cd650",
+        url:"https://api.spoonacular.com/recipes/"+id+"/information?apiKey=0bab59a4d2c04015b66baba96d05e71e",
         success:function(res){
             
-            document.getElementById("sourceLink").innerHTML += res.sourceUrl + "<br>"
-            document.getElementById("sourceLink").href += res.sourceUrl
-            //return res.sourceUrl;
+            console.log(res.sourceUrl);
+            
+            $("a[href^='templink" + i.toString() +"' ]")
+                .each(function () {
+                this.href = this.href.replace("http://neyak.sgedu.site/templink" + i.toString(), res.sourceUrl);
+            });
         } 
     });
 }
@@ -72,19 +78,26 @@ diet = document.getElementById("usrDiets").value;
 function getrecipe(q){
     $.ajax({
         
-        url:"https://api.spoonacular.com/recipes/search?apiKey=f03a41647d14469b9841ab4eca7cd650&number=2&query="+q+"&diet="+diet+"&intolerances"+allergens,
+        url:"https://api.spoonacular.com/recipes/search?apiKey=0bab59a4d2c04015b66baba96d05e71e&number=2&query="+q+"&diet="+diet+"&intolerances"+allergens,
         success:function(res){
+            if (q == "") {
+              alert("No results. Please enter ingredients");
+              return;
+            }
             document.getElementById("output").innerHTML= "";
+            
+            if (res.results.length == 0) {
+              alert("No results. Please enter new ingredients");
+              return;
+            }
+
             for(var i=0; i<res.results.length;i++){
+
+                document.getElementById("output").innerHTML+="<h1>"+res.results[i].title+"</h1><br><a href='templink" + i.toString() +"' target='_blank'><img src='"+
+                res.baseUri+res.results[i].image+"'width='400'></img></a><br> ready in "+res.results[i].readyInMinutes+" minutes";
+
+                getsource(res.results[i].id, i);
                 
-                //document.getElementById("output").innerHTML+="<h1>"+res.results[i].title+"</h1><br><a href='"+getsource(res.results[i].id)"'>
-                //<img src='"+res.baseUri+res.results[i].image+"'width='400'></img></a><br> ready in "+res.results[i].readyInMinutes+" minutes"
-                //getsource(res.results[i].id)
-                
-                // want it to also take into account user preferences
-                document.getElementById("output").innerHTML+="<h1>"+res.results[i].title+"</h1><br><img src='"+res.baseUri+res.results[i].image+"'width='400'></img><br> ready in "
-                +res.results[i].readyInMinutes+" minutes"
-                getsource(res.results[i].id)
             }
         }
     });
