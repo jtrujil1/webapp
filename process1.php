@@ -52,6 +52,9 @@ $result = $conn->query($sql);
 //close the connection
 $conn->close();
 
+$url = "https://alejandrat.sgedu.site/home.php";
+
+echo "<script>window.location = '$url'</script>";
 ?>
 </body>
 </html>
