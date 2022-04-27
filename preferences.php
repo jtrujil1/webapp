@@ -2,6 +2,9 @@
 <html>
 <head>
 <meta charset="utf-8">
+<meta name="google-signin-scope" content="profile email">
+<meta name="google-signin-code" content="loading.php">
+<meta name="google-signin-client_id" content="764009503051-2ii3ko9tqvj69aoielqgbv4a2tfgrfqm.apps.googleusercontent.com">
 <title>Foodscape Preferences</title>
 <link rel="stylesheet" href="prefstyle.css">
 <link rel = "stylesheet" href = "topbar.css">
@@ -25,6 +28,22 @@ echo "<div class='dropdown'>
         <a href='javascript:void(0);' onclick='signOut();'>
             <img src='images/signout.png' width='20' height='15'> Sign Out</a></div></div></div>";
 ?>
+<script type="text/javascript">        
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            console.log('User signed out.');
+            window.open("/login.html","_self");
+        });
+        }
+
+        function onLoad() {
+        gapi.load('auth2', function() {
+            gapi.auth2.init();
+        });
+    }
+</script>
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
 <div id="container">
 <img id="logo" src="images/Foodscape.jpg">
 <h1>Your Preferences</h1>
@@ -104,20 +123,5 @@ $conn->close();
 exit();
 ?>
 </div>
-<script>        
-    function signOut() {
-        var auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(function () {
-            console.log('User signed out.');
-            window.open("/login.html","_self");
-        });
-        }
-
-        function onLoad() {
-        gapi.load('auth2', function() {
-            gapi.auth2.init();
-        });
-    }
-</script>
 </body>
 </html>
